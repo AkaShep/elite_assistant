@@ -1,11 +1,6 @@
 ## main.py
 from speech_recognition.recognizer import listen_for_command
-from command_parser.parser import interpret_command, load_command_config
 from tts_engine.silero_tts import speak, init_tts
-from utils.hotkey_emulator import press_key
-from elite_interface.journal_watcher import watch_journal
-from elite_interface.status_watcher import watch_status
-from elite_interface.command_handlers import detect_firegroup_count
 import threading
 import json
 import logging
