@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "PIZUy26i+5JGD5/3RCSAv2NenR07IwgXCFpOuKPBuQ4=",
+  "Source": "EliteAPIRestServer",
+  "BasePath": "_content/EliteAPIRestServer",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

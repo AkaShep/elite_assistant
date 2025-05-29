@@ -1,0 +1,62 @@
+﻿// Program.cs
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using EliteAPI;
+using EliteAPI.Abstractions.Events;
+using EliteAPI.Events;
+using EliteAPI.Abstractions;
+using EliteAPI.Abstractions.Bindings;
+using EliteAPI.Status;
+using EliteAPI.Status.Ship;
+using EliteAPI.Status.Ship.Events;
+using System.Collections.Concurrent;
+using EliteApiRestServer.Modules;
+
+var builder = WebApplication.CreateBuilder(args);
+var app = builder.Build();
+
+// Очередь последних 100 событий
+var eventQueue = new ConcurrentQueue<IEvent>();
+
+// EliteAPI инициализация
+var host = Host.CreateDefaultBuilder()
+    .ConfigureServices(s =>
+    {
+        s.AddEliteApi();
+        
+    })
+    .Build();
+
+
+var api = host.Services.GetRequiredService<IEliteDangerousApi>();
+
+api.Events.OnAny(e => Console.WriteLine($"Подпись событие {e.Event}"));
+
+await api.StartAsync();
+
+//Сюда вписывать подключаемые модули
+var gameStateTracker = new GameStateTracker(api);
+
+// Маршруты REST API
+app.MapGet("/status", () => new { status = "EliteAPI запущен" });
+app.MapGet("/ship-status", () => Results.Json(gameStateTracker.State));
+app.MapGet("/last-event", () =>
+{
+    if (eventQueue.TryPeek(out var lastEvent))
+    {
+        return Results.Json(lastEvent);
+    }
+    return Results.NotFound("Нет событий");
+});
+
+app.MapGet("/events", (int count) =>
+{
+    var events = eventQueue.ToArray().Reverse().Take(count);
+    return Results.Json(events);
+});
+
+app.MapGet("/", () => "EliteAPI REST сервер запущен");
+
+app.Run("http://localhost:5000");

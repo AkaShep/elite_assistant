@@ -2,10 +2,22 @@
 from speech_recognition.recognizer import listen_for_command
 from tts_engine.silero_tts import speak, init_tts
 import threading
+import queue
 import json
 import logging
 
 logging.basicConfig(filename='assistant.log', level=logging.INFO, format='%(asctime)s [%(levelname)s] %(message)s')
+
+# Очередь для передачи текста в TTS
+tts_queue = queue.Queue()
+
+def tts_worker():
+    while True:
+        text = tts_queue.get()
+        if text is None:
+            break  # Выход из потока при получении None
+        speak(text)
+        tts_queue.task_done()
 
 def main():
     print("[Elite Assistant] Запуск...")
@@ -14,40 +26,25 @@ def main():
     with open("config/settings.json", "r", encoding="utf-8") as f:
         config = json.load(f)
     init_tts(config)
-    load_command_config("config/commands.json")
 
-    journal_thread = threading.Thread(target=watch_journal, args=(speak,), daemon=True)
-    journal_thread.start()
-
-    status_thread = threading.Thread(target=watch_status, args=(speak,), daemon=True)
-    status_thread.start()
+    # Запуск TTS потока
+    tts_thread = threading.Thread(target=tts_worker, daemon=True)
+    tts_thread.start()
 
     try:
         while True:
-            command = listen_for_command()
-            if command:
-                logging.info(f"Распознано: {command}")
-                print(f"[Команда] Распознано: {command}")
-                try:
-                    action = interpret_command(command)
-                    if action:
-                        if "function" in action:
-                           if action["function"] == "detect_firegroup_count":
-                                detect_firegroup_count(speak)                     
-                                continue
-                        if "response" in action:
-                            speak(action['response'])
-                        if "key" in action:
-                            press_key(action['key'])
-                    else:
-                        logging.warning(f"Неизвестная команда: {command}")
-                        speak("Команда не распознана")
-                except Exception as e:
-                    logging.error(f"Ошибка выполнения команды: {e}")
-                    speak("Произошла ошибка при выполнении команды")
+            recognized_text = listen_for_command()
+            if recognized_text:
+                print(f"Распознано: {recognized_text}")
+                tts_queue.put(recognized_text)
     except KeyboardInterrupt:
-        logging.info("Завершение работы ассистента")
-        print("\n[Elite Assistant] Завершение работы.")
+        print("\nПрограмма остановлена пользователем.")
+    except Exception as e:
+        print(f"Произошла ошибка во время выполнения: {e}")
+    finally:
+        # Завершаем поток TTS
+        tts_queue.put(None)
+        tts_thread.join()
 
 if __name__ == "__main__":
     main()
