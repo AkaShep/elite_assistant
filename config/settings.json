@@ -1,0 +1,6 @@
+{
+  "voice_language": "ru",
+  "model_id": "v4_ru",
+  "default_speaker": "xenia",
+  "sample_rate": 48000
+}
