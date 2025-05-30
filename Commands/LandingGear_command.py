@@ -1,11 +1,16 @@
 import requests
 
 class LandingGearCommand:
-    def __init__(self, tts):
-        self.tts = tts  # Silero TTS экземпляр
-
-    def can_handle(self, text):
-        return "статус шасси" in text
+    def __init__(self, tts, bindings_loader):
+        self.tts = tts    # Silero TTS экземпляр
+        self.bindings_loader = bindings_loader 
+        self.priority = 20
+        self.match_threshold = 60
+        self.last_recognized_command = ""
+        self.test_phrases = [
+            "статус шасси",
+            ] 
+      
 
     def execute(self):
         self.tts.speak("Проверяю статус шасси...")

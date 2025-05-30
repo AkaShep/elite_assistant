@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "2Cj4KA02ecw=",
+  "dgSpecHash": "WNtQYELskdo=",
   "success": true,
-  "projectFilePath": "E:\\PythonProject\\elite-voice-control\\elite_assistant\\EliteAPIRestServer\\EliteAPIRestServer.csproj",
+  "projectFilePath": "E:\\PythonProject\\elite-voice-control\\elite_assistant\\EliteApiRestServer\\EliteAPIRestServer.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\AkaShep\\.nuget\\packages\\eliteapi\\3.3.10\\eliteapi.3.3.10.nupkg.sha512",
     "C:\\Users\\AkaShep\\.nuget\\packages\\eliteapi.abstractions\\3.3.9\\eliteapi.abstractions.3.3.9.nupkg.sha512",

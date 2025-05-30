@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("EliteAPIRestServer")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b7687e85b06daffff0d8cb6eb0e17269c3895ef3")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+969043160337744ddcce8b088e79ae489577e058")]
 [assembly: System.Reflection.AssemblyProductAttribute("EliteAPIRestServer")]
 [assembly: System.Reflection.AssemblyTitleAttribute("EliteAPIRestServer")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

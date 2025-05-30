@@ -33,41 +33,41 @@ namespace EliteApiRestServer.Modules
         {
             _api = api;
 
-            _api.Events.On<GearStatusEvent>((gear, ctx) =>
+            _api.Events.On<GearStatusEvent>(e =>
             {
-                State.IsLandingGearDown = gear.Value;
-                Console.WriteLine($"[GameState] Landing gear: {gear.Value}");
+                State.IsLandingGearDown = e.Value;
+                Console.WriteLine($"[GameState] Landing gear: {e.Value}");
             });
 
-            _api.Events.On<LightsStatusEvent>((lights, ctx) =>
+            _api.Events.On<LightsStatusEvent>(e =>
             {
-                State.AreLightsOn = lights.Value;
-                Console.WriteLine($"[GameState] Lights: {lights.Value}");
+                State.AreLightsOn = e.Value;
+                Console.WriteLine($"[GameState] Lights: {e.Value}");
             });
 
-            _api.Events.On<CargoScoopStatusEvent>((scoop, ctx) =>
+            _api.Events.On<CargoScoopStatusEvent>(e =>
             {
-                State.IsCargoScoopDeployed = scoop.Value;
-                Console.WriteLine($"[GameState] Cargo scoop: {scoop.Value}");
+                State.IsCargoScoopDeployed =e.Value;
+                Console.WriteLine($"[GameState] Cargo scoop: {e.Value}");
             });
 
-            _api.Events.On<HardpointsStatusEvent>((hardpoints, ctx) =>
+            _api.Events.On<HardpointsStatusEvent>(e =>
             {
-                State.IsHardpointsDeployed = hardpoints.Value;
-                Console.WriteLine($"[GameState] Hardpoints: {hardpoints.Value}");
+                State.IsHardpointsDeployed = e.Value;
+                Console.WriteLine($"[GameState] Hardpoints: {e.Value}");
             });
 
 
-            _api.Events.On<DockedStatusEvent>((docked, ctx) =>
+            _api.Events.On<DockedStatusEvent>(e =>
             {
-                State.IsDocked = docked.Value;
-                Console.WriteLine($"[GameState] Docked: {docked.Value}");
+                State.IsDocked = e.Value;
+                Console.WriteLine($"[GameState] Docked: {e.Value}");
             });
 
-            _api.Events.On<InMothershipStatusEvent>((vehicle, ctx) =>
+            _api.Events.On<InMothershipStatusEvent>(e =>
             {
-                State.InMothershipStatus = vehicle.Value;
-                Console.WriteLine($"[GameState] Vehicle status: {vehicle.Value}");
+                State.InMothershipStatus = e.Value;
+                Console.WriteLine($"[GameState] получил InMothershipEvent: {e.Value}");
             });
 
             _api.Events.On<UnderAttackEvent>((attack, ctx) =>

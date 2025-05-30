@@ -8,6 +8,7 @@ using EliteAPI.Abstractions.Events;
 using EliteAPI.Events;
 using EliteAPI.Abstractions;
 using EliteAPI.Abstractions.Bindings;
+using EliteAPI.Abstractions.Bindings.Models;
 using EliteAPI.Status;
 using EliteAPI.Status.Ship;
 using EliteAPI.Status.Ship.Events;
@@ -34,6 +35,11 @@ var api = host.Services.GetRequiredService<IEliteDangerousApi>();
 
 api.Events.OnAny(e => Console.WriteLine($"Подпись событие {e.Event}"));
 
+api.Events.On<InMothershipStatusEvent>(e =>
+{
+    Console.WriteLine($"[DEBUG] Program.cs получил InMothershipEvent: {e.Value}");
+});
+
 await api.StartAsync();
 
 //Сюда вписывать подключаемые модули
@@ -42,6 +48,26 @@ var gameStateTracker = new GameStateTracker(api);
 // Маршруты REST API
 app.MapGet("/status", () => new { status = "EliteAPI запущен" });
 app.MapGet("/ship-status", () => Results.Json(gameStateTracker.State));
+app.MapGet("/bindings", () =>
+{
+    var result = new Dictionary<string, string>();
+
+    foreach (KeyBinding key in Enum.GetValues(typeof(KeyBinding)))
+    {
+        try
+        {
+            var binding = api.Bindings[key];
+            var primaryKey = binding.Primary?.Key ?? "not set";
+            result[key.ToString()] = primaryKey;
+        }
+        catch
+        {
+            result[key.ToString()] = "not set";
+        }
+    }
+
+    return Results.Json(result);
+});
 app.MapGet("/last-event", () =>
 {
     if (eventQueue.TryPeek(out var lastEvent))
