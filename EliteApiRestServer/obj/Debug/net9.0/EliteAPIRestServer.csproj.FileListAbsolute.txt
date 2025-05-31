@@ -33,3 +33,4 @@ E:\PythonProject\elite-voice-control\elite_assistant\EliteAPIRestServer\obj\Debu
 E:\PythonProject\elite-voice-control\elite_assistant\EliteAPIRestServer\obj\Debug\net9.0\EliteAPIRestServer.pdb
 E:\PythonProject\elite-voice-control\elite_assistant\EliteAPIRestServer\obj\Debug\net9.0\EliteAPIRestServer.genruntimeconfig.cache
 E:\PythonProject\elite-voice-control\elite_assistant\EliteAPIRestServer\obj\Debug\net9.0\ref\EliteAPIRestServer.dll
+E:\PythonProject\elite-voice-control\elite_assistant\EliteApiRestServer\bin\Debug\net9.0\gamestate.json

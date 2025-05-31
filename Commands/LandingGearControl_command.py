@@ -2,9 +2,10 @@ import keyboard
 import requests
 
 class LandingGearControlCommand:
-    def __init__(self, tts, bindings_loader):
+    def __init__(self, tts, bindings_loader, status_client):
         self.tts = tts
         self.bindings_loader = bindings_loader
+        self.status_client = status_client
         self.priority = 20
         self.match_threshold = 60
         self.last_recognized_command = ""
@@ -30,17 +31,9 @@ class LandingGearControlCommand:
             self.tts.speak("Не удалось понять, что делать с шасси.")
             return
 
-        try:
-            response = requests.get('http://localhost:5000/ship-status')
-            response.raise_for_status()
-            data = response.json()
-        except Exception as e:
-            print(f"[ERROR] Ошибка при запросе к серверу: {e}")
-            self.tts.speak("Ошибка получения состояния корабля.")
-            return
+        is_landing_gear_down = self.status_client.get_event_value('GearStatusEvent')
+        is_in_mothership = self.status_client.get_event_value('InMothershipStatusEvent')
 
-        is_landing_gear_down = data.get('isLandingGearDown')
-        is_in_mothership = data.get('inMothershipStatus')
 
         if not is_in_mothership:
             self.tts.speak("Ты не находишься в корабле. Команда недоступна.")

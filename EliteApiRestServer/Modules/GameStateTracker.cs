@@ -1,23 +1,16 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
+using System.Collections.Generic;
+using System.Reflection;
 using EliteAPI.Abstractions;
-using EliteAPI.Abstractions.Events.Status;
-using EliteAPI.Events.Status;
+using EliteAPI.Abstractions.Events;
 
 namespace EliteApiRestServer.Modules
 {
     public class GameState
     {
-        public bool IsLandingGearDown { get; set; }
-        public bool AreLightsOn { get; set; }
-        public bool IsCargoScoopDeployed { get; set; }
-        public bool IsHardpointsDeployed { get; set; }
-        public bool IsDocked { get; set; }
-        public bool IsInMothership { get; set; }
-        public bool UnderAttack { get; set; }
-        public DateTime LastUnderAttackTime { get; set; }
+        public Dictionary<string, Dictionary<string, object>> Events { get; set; } = new();
     }
 
     public class GameStateTracker
@@ -37,58 +30,63 @@ namespace EliteApiRestServer.Modules
 
         private void SetupSubscriptions()
         {
-            _api.Events.On<GearStatusEvent>(e =>
+            _api.Events.OnAny((e, context) =>
             {
-                State.IsLandingGearDown = e.Value;
-                SaveState();
-                Console.WriteLine($"[GameState] Landing gear: {e.Value}");
-            });
+                var eventType = e.GetType();
+                var eventName = eventType.Name;
 
-            _api.Events.On<LightsStatusEvent>(e =>
-            {
-                State.AreLightsOn = e.Value;
-                SaveState();
-                Console.WriteLine($"[GameState] Lights: {e.Value}");
-            });
+                var eventData = new Dictionary<string, object>();
+                ExtractPropertiesRecursive(eventType, e, eventData, "");
 
-            _api.Events.On<CargoScoopStatusEvent>(e =>
-            {
-                State.IsCargoScoopDeployed = e.Value;
-                SaveState();
-                Console.WriteLine($"[GameState] Cargo scoop: {e.Value}");
-            });
-
-            _api.Events.On<HardpointsStatusEvent>(e =>
-            {
-                State.IsHardpointsDeployed = e.Value;
-                SaveState();
-                Console.WriteLine($"[GameState] Hardpoints: {e.Value}");
-            });
-
-            _api.Events.On<DockedStatusEvent>(e =>
-            {
-                State.IsDocked = e.Value;
-                SaveState();
-                Console.WriteLine($"[GameState] Docked: {e.Value}");
-            });
-
-            _api.Events.On<InMothershipEvent>(e =>
-            {
-                State.IsInMothership = e.Value;
-                SaveState();
-                Console.WriteLine($"[GameState] In mothership: {e.Value}");
-            });
-
-            _api.Events.On<UnderAttackEvent>(e =>
-            {
-                State.UnderAttack = e.Value;
-                if (underAttack.Value)
+                if (eventData.Count > 0)
                 {
-                    State.LastUnderAttackTime = DateTime.UtcNow;
+                    State.Events[eventName] = eventData;
+                    Console.WriteLine($"[GameState] Updated {eventName}: {JsonSerializer.Serialize(eventData)}");
+
+                    SaveState();
                 }
-                SaveState();
-                Console.WriteLine($"[GameState] Under attack: {e.Value}");
             });
+        }
+
+        private void ExtractPropertiesRecursive(Type type, object obj, Dictionary<string, object> output, string prefix)
+        {
+            if (obj == null) return;
+
+            foreach (var prop in type.GetProperties(BindingFlags.Public | BindingFlags.Instance))
+            {
+                var value = prop.GetValue(obj);
+                if (value == null) continue;
+
+                var propName = string.IsNullOrEmpty(prefix) ? prop.Name : $"{prefix}.{prop.Name}";
+                var valueType = value.GetType();
+
+                if (IsPrimitiveOrSimple(valueType))
+                {
+                    output[propName] = value;
+                }
+                else if (typeof(System.Collections.IEnumerable).IsAssignableFrom(valueType) && valueType != typeof(string))
+                {
+                    int index = 0;
+                    foreach (var item in (System.Collections.IEnumerable)value)
+                    {
+                        ExtractPropertiesRecursive(item.GetType(), item, output, $"{propName}[{index}]");
+                        index++;
+                    }
+                }
+                else
+                {
+                    ExtractPropertiesRecursive(valueType, value, output, propName);
+                }
+            }
+        }
+
+        private static bool IsPrimitiveOrSimple(Type type)
+        {
+            return type.IsPrimitive ||
+                   type.IsEnum ||
+                   type == typeof(string) ||
+                   type == typeof(decimal) ||
+                   type == typeof(DateTime);
         }
 
         private GameState LoadState()

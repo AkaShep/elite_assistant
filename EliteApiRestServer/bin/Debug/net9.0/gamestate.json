@@ -1,0 +1,272 @@
+{
+  "Events": {
+    "FileheaderEvent": {
+      "Timestamp": "2025-05-31T18:42:08Z",
+      "Event": "Fileheader",
+      "Part": 1,
+      "Language": "Russian/RU",
+      "Gameversion": "4.1.2.100",
+      "Build": "r313544/r0 ",
+      "IsOdyssey": true
+    },
+    "CommanderEvent": {
+      "Timestamp": "2025-05-31T18:43:13Z",
+      "Event": "Commander",
+      "Fid": "F6003020",
+      "Name": "Aka.Shep"
+    },
+    "MaterialsEvent": {
+      "Timestamp": "2025-05-31T18:43:13Z",
+      "Event": "Materials"
+    },
+    "RankEvent": {
+      "Timestamp": "2025-05-31T18:43:13Z",
+      "Event": "Rank",
+      "Combat": 4,
+      "Trade": 5,
+      "Explore": 5,
+      "Empire": 1,
+      "Federation": 6,
+      "Soldier": 0,
+      "Exobiologist": 0,
+      "Cqc": 0
+    },
+    "ProgressEvent": {
+      "Timestamp": "2025-05-31T18:43:13Z",
+      "Event": "Progress",
+      "Combat": 34,
+      "Trade": 20,
+      "Explore": 35,
+      "Empire": 100,
+      "Federation": 52,
+      "Soldier": 0,
+      "Exobiologist": 0,
+      "Cqc": 0
+    },
+    "ReputationEvent": {
+      "Timestamp": "2025-05-31T18:43:13Z",
+      "Event": "Reputation",
+      "Empire": 44.9725,
+      "Federation": 75,
+      "Independent": 0,
+      "Alliance": 69.204002
+    },
+    "EngineerProgressEvent": {
+      "Timestamp": "2025-05-31T18:43:13Z",
+      "Event": "EngineerProgress"
+    },
+    "LoadGameEvent": {
+      "Timestamp": "2025-05-31T18:43:13Z",
+      "Event": "LoadGame",
+      "Fid": "F6003020",
+      "Commander": "Aka.Shep",
+      "HasHorizons": true,
+      "HasOdyssey": true,
+      "ShipId": "7",
+      "ShipName": "",
+      "ShipIdent": "",
+      "FuelLevel": 11.85,
+      "FuelCapacity": 16,
+      "IsLanded": false,
+      "GameMode": "Solo",
+      "Language": "Russian/RU",
+      "GameVersion": "4.1.2.100",
+      "Build": "r313544/r0 ",
+      "Credits": 59027574,
+      "Loan": 0,
+      "IsStartingDead": false
+    },
+    "StatisticsEvent": {
+      "Timestamp": "2025-05-31T18:43:23Z",
+      "Event": "Statistics"
+    },
+    "ReceiveTextEvent": {
+      "Timestamp": "2025-05-31T18:43:28Z",
+      "Event": "ReceiveText",
+      "Channel": "npc"
+    },
+    "LocationEvent": {
+      "Timestamp": "2025-05-31T18:43:28Z",
+      "Event": "Location",
+      "Longitude": 0,
+      "Latitude": 0,
+      "DistanceFromStarInLightSeconds": 307.075657,
+      "IsDocked": false,
+      "IsInTaxi": false,
+      "IsInMultiCrew": false,
+      "IsInSrv": false,
+      "IsOnFoot": false,
+      "StarSystem": "Pegasi Sector ZU-O b6-7",
+      "SystemAddress": "16062774846897",
+      "SystemAllegiance": "Independent",
+      "Population": 0,
+      "Body": "Detention Ship Alpha-7",
+      "BodyId": "15",
+      "BodyType": "Station",
+      "IsWanted": false
+    },
+    "PowerplayEvent": {
+      "Timestamp": "2025-05-31T18:43:28Z",
+      "Event": "Powerplay",
+      "Power": "Felicia Winters",
+      "Rank": 0,
+      "Merits": 708,
+      "Votes": 0,
+      "TimePledged": 15405644
+    },
+    "MusicEvent": {
+      "Timestamp": "2025-05-31T18:43:28Z",
+      "Event": "Music",
+      "MusicTrack": "Exploration"
+    },
+    "ShipLockerEvent": {
+      "Timestamp": "2025-05-31T18:43:28Z",
+      "Event": "ShipLocker"
+    },
+    "MissionsEvent": {
+      "Timestamp": "2025-05-31T18:43:28Z",
+      "Event": "Missions"
+    },
+    "LoadoutEvent": {
+      "Timestamp": "2025-05-31T18:43:28Z",
+      "Event": "Loadout",
+      "Ship": "python_nx",
+      "ShipId": "7",
+      "ShipName": " ",
+      "ShipIdent": "AK-06P",
+      "HullValue": 67527359,
+      "ModulesValue": 3319444,
+      "HullHealth": 1,
+      "UnladenMass": 700,
+      "CargoCapacity": 10,
+      "MaxJumpRange": 17.470352,
+      "Rebuy": 3542341,
+      "IsHot": false
+    },
+    "StatusEvent": {
+      "Timestamp": "2025-05-31T18:50:52Z",
+      "Event": "Status",
+      "Flags": 150994952,
+      "Available": true,
+      "Docked": false,
+      "Landed": false,
+      "Gear": false,
+      "Shields": true,
+      "Supercruise": false,
+      "FlightAssist": true,
+      "Hardpoints": false,
+      "Winging": false,
+      "Lights": false,
+      "CargoScoop": false,
+      "SilentRunning": false,
+      "Scooping": false,
+      "SrvHandbrake": false,
+      "SrvTurret": false,
+      "SrvNearShip": false,
+      "SrvDriveAssist": false,
+      "MassLocked": false,
+      "FsdCharging": false,
+      "FsdCooldown": false,
+      "LowFuel": false,
+      "Overheating": false,
+      "HasLatLong": false,
+      "InDanger": false,
+      "InInterdiction": false,
+      "InMothership": true,
+      "InFighter": false,
+      "InSrv": false,
+      "AnalysisMode": true,
+      "NightVision": false,
+      "AltitudeFromAverageRadius": false,
+      "FsdJump": false,
+      "SrvHighBeam": false,
+      "Flags2": 0,
+      "OnFoot": false,
+      "InTaxi": false,
+      "InMultiCrew": false,
+      "OnFootInStation": false,
+      "OnFootOnPlanet": false,
+      "AimDownSight": false,
+      "LowOxygen": false,
+      "LowHealth": false,
+      "Cold": false,
+      "Hot": false,
+      "VeryCold": false,
+      "VeryHot": false,
+      "Gliding": false,
+      "OnFootInHangar": false,
+      "OnFootInSocialSpace": false,
+      "OnFootInExterior": false,
+      "BreathableAtmosphere": false,
+      "FireGroup": 2,
+      "GuiFocus": 0,
+      "Cargo": 0,
+      "LegalState": 0,
+      "Balance": 59027574,
+      "BodyRadius": 0,
+      "Oxygen": 0,
+      "Health": 0,
+      "Temperature": 0,
+      "Gravity": 0,
+      "Latitude": 0,
+      "Longitude": 0,
+      "Heading": 0,
+      "Altitude": 0
+    },
+    "AvailableStatusEvent": {
+      "Timestamp": "2025-05-31T21:43:30.2017401+03:00",
+      "Event": "Available",
+      "Value": true
+    },
+    "ShieldsStatusEvent": {
+      "Timestamp": "2025-05-31T21:43:30.2109556+03:00",
+      "Event": "Shields",
+      "Value": true
+    },
+    "InMothershipStatusEvent": {
+      "Timestamp": "2025-05-31T21:43:30.2204521+03:00",
+      "Event": "InMothership",
+      "Value": true
+    },
+    "AnalysisModeStatusEvent": {
+      "Timestamp": "2025-05-31T21:43:30.2304794+03:00",
+      "Event": "AnalysisMode",
+      "Value": true
+    },
+    "PipsStatusEvent": {
+      "Timestamp": "2025-05-31T21:45:04.3827299+03:00",
+      "Event": "Pips"
+    },
+    "FireGroupStatusEvent": {
+      "Timestamp": "2025-05-31T21:43:30.2503392+03:00",
+      "Event": "FireGroup",
+      "Value": 2
+    },
+    "FuelStatusEvent": {
+      "Timestamp": "2025-05-31T21:50:53.079585+03:00",
+      "Event": "Fuel"
+    },
+    "BalanceStatusEvent": {
+      "Timestamp": "2025-05-31T21:43:30.2669813+03:00",
+      "Event": "Balance",
+      "Value": 59027574
+    },
+    "CargoEvent": {
+      "Timestamp": "2025-05-31T18:43:30Z",
+      "Event": "Cargo",
+      "Vessel": "Ship",
+      "Count": 0
+    },
+    "GearStatusEvent": {
+      "Timestamp": "2025-05-31T21:45:09.0118654+03:00",
+      "Event": "Gear",
+      "Value": false
+    },
+    "ReservoirReplenishedEvent": {
+      "Timestamp": "2025-05-31T18:48:59Z",
+      "Event": "ReservoirReplenished",
+      "FuelMain": 11.02,
+      "FuelReservoir": 0.83
+    }
+  }
+}
