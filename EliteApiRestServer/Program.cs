@@ -51,8 +51,30 @@ app.MapGet("/bindings", () =>
         try
         {
             var binding = api.Bindings[key];
-            var primaryKey = binding.Primary?.Key ?? "not set";
-            result[key.ToString()] = primaryKey;
+
+            var primary = binding.Primary;
+            if (primary == null)
+            {
+                result[key.ToString()] = "not set";
+                continue;
+            }
+
+            var primaryKey = primary.Value.Key ?? "not set";
+            var modifiers = primary.Value.Modifiers;
+
+            string combined;
+
+            if (modifiers != null && modifiers.Any())
+            {
+                var modifierNames = string.Join("+", modifiers.Select(m => m.Key));
+                combined = $"{modifierNames}+{primaryKey}";
+            }
+            else
+            {
+                combined = primaryKey;
+            }
+
+            result[key.ToString()] = combined;
         }
         catch
         {

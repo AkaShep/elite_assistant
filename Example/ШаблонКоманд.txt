@@ -1,0 +1,24 @@
+class ExampleCommand:
+    def __init__(self, tts, bindings_loader, status_client):
+        self.tts = tts
+        self.bindings_loader = bindings_loader
+        self.status_client = status_client
+        self.test_phrases = ["пример команды", "тестовая команда"]
+
+    def execute(self):
+        self.tts.speak("Выполняю пример команды...")
+        # Пример: получить статус света
+        lights_on = self.status_client.get_event_value('LightsStatusEvent')
+        if lights_on is None:
+            self.tts.speak("Не удалось получить статус света.")
+        elif lights_on:
+            self.tts.speak("Свет включён!")
+        else:
+            self.tts.speak("Свет выключен!")
+
+#Прожатие клавишь
+делается один раз в коде{
+keys = self.bindings_loader.get_binding_keys('имя клавиши, можно узнать на loclhost:5000/bindings')
+landing_gear_key = '+'.join(keys) if keys else None
+}
+keyboard.press_and_release(landing_gear_key)

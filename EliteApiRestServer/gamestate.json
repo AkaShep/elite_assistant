@@ -873,9 +873,9 @@
       "IsHot": false
     },
     "StatusEvent": {
-      "Timestamp": "2025-05-31T19:37:04Z",
+      "Timestamp": "2025-05-31T21:08:46Z",
       "Event": "Status",
-      "Flags": 150994952,
+      "Flags": 16777224,
       "Available": true,
       "Docked": false,
       "Landed": false,
@@ -904,7 +904,7 @@
       "InMothership": true,
       "InFighter": false,
       "InSrv": false,
-      "AnalysisMode": true,
+      "AnalysisMode": false,
       "NightVision": false,
       "AltitudeFromAverageRadius": false,
       "FsdJump": false,
@@ -930,10 +930,10 @@
       "Pips.System": 4,
       "Pips.Engines": 4,
       "Pips.Weapons": 4,
-      "FireGroup": 2,
+      "FireGroup": 0,
       "GuiFocus": 0,
-      "Fuel.FuelMain": 11.02,
-      "Fuel.FuelReservoir": 0.254998,
+      "Fuel.FuelMain": 9.360001,
+      "Fuel.FuelReservoir": 0.68498,
       "Cargo": 0,
       "LegalState": 0,
       "Balance": 59027574,
@@ -964,27 +964,27 @@
       "Value": true
     },
     "AnalysisModeStatusEvent": {
-      "Timestamp": "2025-05-31T21:43:30.2304794\u002B03:00",
+      "Timestamp": "2025-05-31T23:39:53.1886541+03:00",
       "Event": "AnalysisMode",
-      "Value": true
+      "Value": false
     },
     "PipsStatusEvent": {
-      "Timestamp": "2025-05-31T21:54:55.555042+03:00",
+      "Timestamp": "2025-05-31T21:54:55.555042\u002B03:00",
       "Event": "Pips",
       "Value.System": 0,
       "Value.Engines": 0,
       "Value.Weapons": 0
     },
     "FireGroupStatusEvent": {
-      "Timestamp": "2025-05-31T21:43:30.2503392\u002B03:00",
+      "Timestamp": "2025-06-01T00:08:05.407368+03:00",
       "Event": "FireGroup",
-      "Value": 2
+      "Value": 0
     },
     "FuelStatusEvent": {
-      "Timestamp": "2025-05-31T22:37:04.4584652+03:00",
+      "Timestamp": "2025-06-01T00:08:46.455245+03:00",
       "Event": "Fuel",
-      "Value.FuelMain": 11.02,
-      "Value.FuelReservoir": 0.254998
+      "Value.FuelMain": 9.360001,
+      "Value.FuelReservoir": 0.68498
     },
     "BalanceStatusEvent": {
       "Timestamp": "2025-05-31T21:43:30.2669813\u002B03:00",
@@ -998,15 +998,24 @@
       "Count": 0
     },
     "GearStatusEvent": {
-      "Timestamp": "2025-05-31T22:32:06.925265+03:00",
+      "Timestamp": "2025-05-31T23:21:06.9201715+03:00",
       "Event": "Gear",
       "Value": false
     },
     "ReservoirReplenishedEvent": {
-      "Timestamp": "2025-05-31T18:54:12Z",
+      "Timestamp": "2025-05-31T20:57:57Z",
       "Event": "ReservoirReplenished",
-      "FuelMain": 11.02,
+      "FuelMain": 9.360001,
       "FuelReservoir": 0.83
+    },
+    "GuiFocusStatusEvent": {
+      "Timestamp": "2025-06-01T00:07:56.6187154+03:00",
+      "Event": "GuiFocus",
+      "Value": 0
+    },
+    "ModuleInfoEvent": {
+      "Timestamp": "2025-05-31T21:07:43Z",
+      "Event": "ModuleInfo"
     }
   }
 }

@@ -18,7 +18,7 @@ import os
 import importlib
 from commands.command_dispatcher import CommandDispatcher
 
-def load_commands(tts, bindings_loader, status_client):
+def load_commands(tts, bindings_loader, status_client, memory):
     """
     Загружает все модули команд из текущей директории, создаёт их экземпляры
     и возвращает список готовых команд.
@@ -43,7 +43,7 @@ def load_commands(tts, bindings_loader, status_client):
                 attr = getattr(module, attr_name)
                 if isinstance(attr, type) and attr_name.endswith('Command'):
                     try:
-                        instance = attr(tts, bindings_loader, status_client)
+                        instance = attr(tts, bindings_loader, status_client, memory)
                         commands.append(instance)
                         print(f"[DEBUG] Добавлен класс команды: {attr_name}")
                     except Exception as e:

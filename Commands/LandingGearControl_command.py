@@ -39,7 +39,8 @@ class LandingGearControlCommand:
             self.tts.speak("Ты не находишься в корабле. Команда недоступна.")
             return
 
-        landing_gear_key = self.bindings_loader.get_binding_key('LandingGearToggle')
+        keys = self.bindings_loader.get_binding_keys('LandingGearToggle')
+        landing_gear_key = '+'.join(keys) if keys else None
         if not landing_gear_key:
             self.tts.speak("Не удалось найти клавишу для управления шасси.")
             return

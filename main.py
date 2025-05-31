@@ -8,6 +8,7 @@ import json
 import logging
 from utils.bindings_loader import BindingsLoader
 from utils.ship_status_client import ShipStatusClient
+from utils.ship_memory import ShipMemory
 
 logging.basicConfig(filename='assistant.log', level=logging.INFO, format='%(asctime)s [%(levelname)s] %(message)s')
 
@@ -41,9 +42,10 @@ def main():
     bindings_loader = BindingsLoader()
     bindings_loader.load_bindings()
     status_client = ShipStatusClient()
+    memory = ShipMemory()
 
     # Загружаем команды и диспетчер
-    all_commands = load_commands(tts_wrapper, bindings_loader, status_client)
+    all_commands = load_commands(tts_wrapper, bindings_loader, status_client, memory)
     dispatcher = CommandDispatcher(all_commands, threshold=70)
 
     if all_commands:
