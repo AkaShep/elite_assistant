@@ -35,10 +35,6 @@ var api = host.Services.GetRequiredService<IEliteDangerousApi>();
 
 api.Events.OnAny(e => Console.WriteLine($"Подпись событие {e.Event}"));
 
-api.Events.On<InMothershipStatusEvent>(e =>
-{
-    Console.WriteLine($"[DEBUG] Program.cs получил InMothershipEvent: {e.Value}");
-});
 
 await api.StartAsync();
 

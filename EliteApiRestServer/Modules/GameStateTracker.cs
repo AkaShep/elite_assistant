@@ -1,9 +1,10 @@
-using EliteAPI.Abstractions;
-using EliteAPI.Abstractions.Events;
-using EliteAPI.Status.Ship.Events;
-using EliteAPI.Status.Ship;
-using EliteAPI.Events;
 using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Text.Json;
+using EliteAPI.Abstractions;
+using EliteAPI.Abstractions.Events.Status;
+using EliteAPI.Events.Status;
 
 namespace EliteApiRestServer.Modules
 {
@@ -14,82 +15,112 @@ namespace EliteApiRestServer.Modules
         public bool IsCargoScoopDeployed { get; set; }
         public bool IsHardpointsDeployed { get; set; }
         public bool IsDocked { get; set; }
-        public bool InMothershipStatus { get; set; }
+        public bool IsInMothership { get; set; }
         public bool UnderAttack { get; set; }
         public DateTime LastUnderAttackTime { get; set; }
-        
-
-
-        // Добавляй сюда любые новые поля по мере необходимости
     }
 
     public class GameStateTracker
     {
         private readonly IEliteDangerousApi _api;
-        public GameState State { get; } = new();
-        private readonly TimeSpan underAttackTimeout = TimeSpan.FromSeconds(10);
+        private readonly string _saveFile = "gamestate.json";
+
+        public GameState State { get; private set; }
 
         public GameStateTracker(IEliteDangerousApi api)
         {
             _api = api;
+            State = LoadState();
 
+            SetupSubscriptions();
+        }
+
+        private void SetupSubscriptions()
+        {
             _api.Events.On<GearStatusEvent>(e =>
             {
                 State.IsLandingGearDown = e.Value;
+                SaveState();
                 Console.WriteLine($"[GameState] Landing gear: {e.Value}");
             });
 
             _api.Events.On<LightsStatusEvent>(e =>
             {
                 State.AreLightsOn = e.Value;
+                SaveState();
                 Console.WriteLine($"[GameState] Lights: {e.Value}");
             });
 
             _api.Events.On<CargoScoopStatusEvent>(e =>
             {
-                State.IsCargoScoopDeployed =e.Value;
+                State.IsCargoScoopDeployed = e.Value;
+                SaveState();
                 Console.WriteLine($"[GameState] Cargo scoop: {e.Value}");
             });
 
             _api.Events.On<HardpointsStatusEvent>(e =>
             {
                 State.IsHardpointsDeployed = e.Value;
+                SaveState();
                 Console.WriteLine($"[GameState] Hardpoints: {e.Value}");
             });
-
 
             _api.Events.On<DockedStatusEvent>(e =>
             {
                 State.IsDocked = e.Value;
+                SaveState();
                 Console.WriteLine($"[GameState] Docked: {e.Value}");
             });
 
-            _api.Events.On<InMothershipStatusEvent>(e =>
+            _api.Events.On<InMothershipEvent>(e =>
             {
-                State.InMothershipStatus = e.Value;
-                Console.WriteLine($"[GameState] получил InMothershipEvent: {e.Value}");
+                State.IsInMothership = e.Value;
+                SaveState();
+                Console.WriteLine($"[GameState] In mothership: {e.Value}");
             });
 
-            _api.Events.On<UnderAttackEvent>((attack, ctx) =>
+            _api.Events.On<UnderAttackEvent>(e =>
             {
-                State.UnderAttack = true;
-                State.LastUnderAttackTime = DateTime.Now;
-                Console.WriteLine("[GameState] Под атакой!");
+                State.UnderAttack = e.Value;
+                if (underAttack.Value)
+                {
+                    State.LastUnderAttackTime = DateTime.UtcNow;
+                }
+                SaveState();
+                Console.WriteLine($"[GameState] Under attack: {e.Value}");
             });
-
         }
-        public bool IsUnderAttackActive()
+
+        private GameState LoadState()
         {
-            if (!State.UnderAttack)
-                return false;
-
-            if ((DateTime.Now - State.LastUnderAttackTime) > underAttackTimeout)
+            if (File.Exists(_saveFile))
             {
-                State.UnderAttack = false;
-                return false;
+                try
+                {
+                    var json = File.ReadAllText(_saveFile);
+                    var restored = JsonSerializer.Deserialize<GameState>(json);
+                    Console.WriteLine("[GameState] Загружено сохранённое состояние");
+                    return restored ?? new GameState();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"[GameState] Ошибка загрузки состояния: {ex.Message}");
+                }
             }
-
-            return true;
+            return new GameState();
         }
-    } 
+
+        private void SaveState()
+        {
+            try
+            {
+                var json = JsonSerializer.Serialize(State, new JsonSerializerOptions { WriteIndented = true });
+                File.WriteAllText(_saveFile, json);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[GameState] Ошибка сохранения состояния: {ex.Message}");
+            }
+        }
+    }
 }
