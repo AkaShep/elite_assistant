@@ -1,11 +1,12 @@
 ## main.py
-from speech_recognition.recognizer import listen_for_command
+from speech_recognition.recognizer import Recognizer
 from tts_engine.silero_tts import speak, init_tts
 from commands import load_commands, CommandDispatcher
 import threading
 import queue
 import json
 import logging
+import time
 from utils.bindings_loader import BindingsLoader
 from utils.ship_status_client import ShipStatusClient
 from utils.ship_memory import ShipMemory
@@ -29,6 +30,21 @@ def tts_worker():
         speak(text)
         tts_queue.task_done()
 
+def combat_mode_checker(status_client, tts_wrapper):
+    previous_combat_mode = None
+    while True:
+        try:
+            in_combat = status_client.get_event_value("InDangerStatusEvent", "Value")
+            if in_combat != previous_combat_mode:
+                previous_combat_mode = in_combat
+                if in_combat:
+                    tts_wrapper.speak("Боевой режим активирован. Переходим на прямое управление.")
+                else:
+                    tts_wrapper.speak("Штатный режим активен. Ожидаю ключевое слово.")
+        except Exception as e:
+            print(f"[CombatModeChecker] Ошибка при проверке режима: {e}")
+        time.sleep(1)  # раз в секунду проверка        
+
 def main():
     print("[Elite Assistant] Запуск...")
     logging.info("[Запуск ассистента]")
@@ -38,6 +54,8 @@ def main():
     init_tts(config)
 
     # Инициализация обёртки и биндингов
+    
+    recognizer = Recognizer()
     tts_wrapper = TTSWrapper()
     bindings_loader = BindingsLoader()
     bindings_loader.load_bindings()
@@ -61,9 +79,17 @@ def main():
     tts_thread = threading.Thread(target=tts_worker, daemon=True)
     tts_thread.start()
 
+    combat_thread = threading.Thread(target=combat_mode_checker, args=(status_client, tts_wrapper), daemon=True)
+    combat_thread.start()
+
+    # Слежение за сменой боевого режима
+    previous_combat_mode = None
+
     try:
         while True:
-            recognized_text = listen_for_command()
+
+            # Проверяем команды
+            recognized_text = recognizer.listen_for_command()
             if recognized_text:
                 recognized_text = recognized_text.lower().strip()
                 print(f"Распознано: '{recognized_text}'")

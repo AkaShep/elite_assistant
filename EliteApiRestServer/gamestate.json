@@ -520,12 +520,12 @@
       "Exobiology.OrganicSpecies": 0
     },
     "ReceiveTextEvent": {
-      "Timestamp": "2025-05-31T21:49:16Z",
+      "Timestamp": "2025-05-31T23:08:08Z",
       "Event": "ReceiveText",
-      "From.Symbol": "$npc_name_decorate:#name=TsunamiFM;",
-      "From.Local": "TsunamiFM",
-      "Message.Symbol": "$Pirate_OnNoCargoFound01;",
-      "Message.Local": "\u041D\u0435\u0442 \u0433\u0440\u0443\u0437\u0430? \u041F\u043E\u0442\u0435\u0440\u044F \u0432\u0440\u0435\u043C\u0435\u043D\u0438...",
+      "From.Symbol": "$npc_name_decorate:#name=Draeyn Dzarath;",
+      "From.Local": "Draeyn Dzarath",
+      "Message.Symbol": "$Commuter_AuthorityScan08;",
+      "Message.Local": "\u0418\u043D\u0441\u043F\u0435\u043A\u0442\u043E\u0440, \u0443 \u0432\u0430\u0441 \u043D\u0435\u0442 \u043F\u0440\u0430\u0432\u0430 \u0441\u043A\u0430\u043D\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u043C\u043E\u0439 \u043A\u043E\u0440\u0430\u0431\u043B\u044C!",
       "Channel": "npc"
     },
     "LocationEvent": {
@@ -569,9 +569,9 @@
       "TimePledged": 15405644
     },
     "MusicEvent": {
-      "Timestamp": "2025-05-31T21:52:22Z",
+      "Timestamp": "2025-05-31T23:21:13Z",
       "Event": "Music",
-      "MusicTrack": "Starport"
+      "MusicTrack": "Exploration"
     },
     "ShipLockerEvent": {
       "Timestamp": "2025-05-31T21:52:07Z",
@@ -873,14 +873,14 @@
       "IsHot": false
     },
     "StatusEvent": {
-      "Timestamp": "2025-05-31T21:52:10Z",
+      "Timestamp": "2025-05-31T23:21:17Z",
       "Event": "Status",
-      "Flags": 16842765,
-      "Available": true,
-      "Docked": true,
+      "Flags": 0,
+      "Available": false,
+      "Docked": false,
       "Landed": false,
-      "Gear": true,
-      "Shields": true,
+      "Gear": false,
+      "Shields": false,
       "Supercruise": false,
       "FlightAssist": true,
       "Hardpoints": false,
@@ -893,7 +893,7 @@
       "SrvTurret": false,
       "SrvNearShip": false,
       "SrvDriveAssist": false,
-      "MassLocked": true,
+      "MassLocked": false,
       "FsdCharging": false,
       "FsdCooldown": false,
       "LowFuel": false,
@@ -901,7 +901,7 @@
       "HasLatLong": false,
       "InDanger": false,
       "InInterdiction": false,
-      "InMothership": true,
+      "InMothership": false,
       "InFighter": false,
       "InSrv": false,
       "AnalysisMode": false,
@@ -927,16 +927,16 @@
       "OnFootInSocialSpace": false,
       "OnFootInExterior": false,
       "BreathableAtmosphere": false,
-      "Pips.System": 4,
-      "Pips.Engines": 4,
-      "Pips.Weapons": 4,
+      "Pips.System": 0,
+      "Pips.Engines": 0,
+      "Pips.Weapons": 0,
       "FireGroup": 0,
       "GuiFocus": 0,
-      "Fuel.FuelMain": 16,
-      "Fuel.FuelReservoir": 0.83,
+      "Fuel.FuelMain": 0,
+      "Fuel.FuelReservoir": 0,
       "Cargo": 0,
-      "LegalState": 4,
-      "Balance": 55966449,
+      "LegalState": 0,
+      "Balance": 0,
       "BodyRadius": 0,
       "Oxygen": 0,
       "Health": 0,
@@ -949,47 +949,47 @@
       "Altitude": 0
     },
     "AvailableStatusEvent": {
-      "Timestamp": "2025-05-31T21:43:30.2017401\u002B03:00",
+      "Timestamp": "2025-06-01T02:21:17.1822968+03:00",
       "Event": "Available",
-      "Value": true
+      "Value": false
     },
     "ShieldsStatusEvent": {
-      "Timestamp": "2025-06-01T00:52:09.1092139+03:00",
+      "Timestamp": "2025-06-01T02:21:17.2137859+03:00",
       "Event": "Shields",
-      "Value": true
+      "Value": false
     },
     "InMothershipStatusEvent": {
-      "Timestamp": "2025-05-31T21:43:30.2204521\u002B03:00",
+      "Timestamp": "2025-06-01T02:21:17.230161+03:00",
       "Event": "InMothership",
-      "Value": true
+      "Value": false
     },
     "AnalysisModeStatusEvent": {
-      "Timestamp": "2025-06-01T00:49:14.5242568+03:00",
+      "Timestamp": "2025-06-01T00:49:14.5242568\u002B03:00",
       "Event": "AnalysisMode",
       "Value": false
     },
     "PipsStatusEvent": {
-      "Timestamp": "2025-06-01T00:52:09.129242+03:00",
+      "Timestamp": "2025-06-01T02:21:17.2363231+03:00",
       "Event": "Pips",
       "Value.System": 0,
       "Value.Engines": 0,
       "Value.Weapons": 0
     },
     "FireGroupStatusEvent": {
-      "Timestamp": "2025-06-01T00:08:05.407368+03:00",
+      "Timestamp": "2025-06-01T00:08:05.407368\u002B03:00",
       "Event": "FireGroup",
       "Value": 0
     },
     "FuelStatusEvent": {
-      "Timestamp": "2025-06-01T00:52:09.140283+03:00",
+      "Timestamp": "2025-06-01T02:21:17.2466616+03:00",
       "Event": "Fuel",
-      "Value.FuelMain": 16,
-      "Value.FuelReservoir": 0.83
+      "Value.FuelMain": 0,
+      "Value.FuelReservoir": 0
     },
     "BalanceStatusEvent": {
-      "Timestamp": "2025-06-01T00:52:09.1505277+03:00",
+      "Timestamp": "2025-06-01T02:21:17.2606612+03:00",
       "Event": "Balance",
-      "Value": 55966449
+      "Value": 0
     },
     "CargoEvent": {
       "Timestamp": "2025-05-31T21:52:09Z",
@@ -998,9 +998,9 @@
       "Count": 0
     },
     "GearStatusEvent": {
-      "Timestamp": "2025-06-01T00:52:09.0995764+03:00",
+      "Timestamp": "2025-06-01T02:21:17.2025233+03:00",
       "Event": "Gear",
-      "Value": true
+      "Value": false
     },
     "ReservoirReplenishedEvent": {
       "Timestamp": "2025-05-31T20:57:57Z",
@@ -1009,7 +1009,7 @@
       "FuelReservoir": 0.83
     },
     "GuiFocusStatusEvent": {
-      "Timestamp": "2025-06-01T00:42:48.6659656+03:00",
+      "Timestamp": "2025-06-01T00:42:48.6659656\u002B03:00",
       "Event": "GuiFocus",
       "Value": 0
     },
@@ -1018,7 +1018,7 @@
       "Event": "ModuleInfo"
     },
     "DestinationStatusEvent": {
-      "Timestamp": "2025-06-01T00:52:09.1610961+03:00",
+      "Timestamp": "2025-06-01T00:52:09.1610961\u002B03:00",
       "Event": "Destination"
     },
     "NavRouteEvent": {
@@ -1064,7 +1064,7 @@
       "RemainingJumpsInRoute": 1
     },
     "FsdChargingStatusEvent": {
-      "Timestamp": "2025-06-01T00:41:57.7415348+03:00",
+      "Timestamp": "2025-06-01T00:41:57.7415348\u002B03:00",
       "Event": "FSDCharging",
       "Value": false
     },
@@ -1075,7 +1075,7 @@
       "IsInTaxi": false
     },
     "FsdJumpStatusEvent": {
-      "Timestamp": "2025-06-01T00:41:57.752569+03:00",
+      "Timestamp": "2025-06-01T00:41:57.752569\u002B03:00",
       "Event": "FSDJump",
       "Value": false
     },
@@ -1166,12 +1166,12 @@
       "BoostUsed": 0
     },
     "SupercruiseStatusEvent": {
-      "Timestamp": "2025-06-01T00:46:23.4081702+03:00",
+      "Timestamp": "2025-06-01T00:46:23.4081702\u002B03:00",
       "Event": "Supercruise",
       "Value": false
     },
     "FsdCooldownStatusEvent": {
-      "Timestamp": "2025-06-01T00:46:32.1962646+03:00",
+      "Timestamp": "2025-06-01T00:46:32.1962646\u002B03:00",
       "Event": "FSDCooldown",
       "Value": false
     },
@@ -1221,7 +1221,7 @@
       "Count": 1
     },
     "InDangerStatusEvent": {
-      "Timestamp": "2025-06-01T00:52:09.1184699+03:00",
+      "Timestamp": "2025-06-01T00:52:09.1184699\u002B03:00",
       "Event": "InDanger",
       "Value": false
     },
@@ -1230,17 +1230,17 @@
       "Event": "HeatWarning"
     },
     "OverheatingStatusEvent": {
-      "Timestamp": "2025-06-01T00:32:02.0772377+03:00",
+      "Timestamp": "2025-06-01T00:32:02.0772377\u002B03:00",
       "Event": "Overheating",
       "Value": false
     },
     "LegalStateStatusEvent": {
-      "Timestamp": "2025-06-01T00:32:42.2861364+03:00",
+      "Timestamp": "2025-06-01T02:21:17.2539732+03:00",
       "Event": "LegalState",
-      "Value": 4
+      "Value": 0
     },
     "LowFuelStatusEvent": {
-      "Timestamp": "2025-06-01T00:38:47.3488463+03:00",
+      "Timestamp": "2025-06-01T00:38:47.3488463\u002B03:00",
       "Event": "LowFuel",
       "Value": false
     },
@@ -1306,9 +1306,9 @@
       "StationType": "Coriolis"
     },
     "MassLockedStatusEvent": {
-      "Timestamp": "2025-06-01T00:52:11.2338616+03:00",
+      "Timestamp": "2025-06-01T02:21:17.2209767+03:00",
       "Event": "MassLocked",
-      "Value": true
+      "Value": false
     },
     "NpcCrewPaidWageEvent": {
       "Timestamp": "2025-05-31T21:39:30Z",
@@ -1318,9 +1318,9 @@
       "Amount": 63156
     },
     "DockedStatusEvent": {
-      "Timestamp": "2025-06-01T00:52:09.0897519+03:00",
+      "Timestamp": "2025-06-01T02:21:17.1908424+03:00",
       "Event": "Docked",
-      "Value": true
+      "Value": false
     },
     "RefuelAllEvent": {
       "Timestamp": "2025-05-31T21:38:46Z",
@@ -1360,7 +1360,7 @@
       "IsWanted": false
     },
     "BindingsEvent": {
-      "Timestamp": "2025-06-01T00:45:59.2413045+03:00",
+      "Timestamp": "2025-06-01T00:45:59.2413045\u002B03:00",
       "Event": "Bindings",
       "Bindings[0].Name": "KeyboardLayout",
       "Bindings[1].Name": "MouseXMode",
@@ -3244,7 +3244,7 @@
       "Bounty": 0
     },
     "HardpointsStatusEvent": {
-      "Timestamp": "2025-06-01T00:50:18.0065847+03:00",
+      "Timestamp": "2025-06-01T00:50:18.0065847\u002B03:00",
       "Event": "Hardpoints",
       "Value": false
     },
@@ -3283,6 +3283,10 @@
       "Option": "rebuy",
       "Cost": 3542341,
       "IsBankrupt": false
+    },
+    "ShutdownEvent": {
+      "Timestamp": "2025-05-31T23:21:16Z",
+      "Event": "Shutdown"
     }
   }
 }

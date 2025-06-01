@@ -2,7 +2,7 @@ import keyboard
 import requests
 
 class LandingGearControlCommand:
-    def __init__(self, tts, bindings_loader, status_client):
+    def __init__(self, tts, bindings_loader, status_client, memory):
         self.tts = tts
         self.bindings_loader = bindings_loader
         self.status_client = status_client
